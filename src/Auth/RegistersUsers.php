@@ -120,11 +120,15 @@ trait RegistersUsers
         //Temporary Password paramter
         $password = $request->has('password')?$request['password']:null;
 
-        return app()->make(AwsCognitoClient::class)->inviteUser(
+        /*return app()->make(AwsCognitoClient::class)->inviteUser(
             $request[$userKey], $password, $attributes,
             $clientMetadata, $messageAction,
             $isUserEmailForcedVerified,
             $groupname
+        );*/
+        
+        return app()->make(AwsCognitoClient::class)->register(
+            $request[$userKey], $password, $attributes
         );
     } //Function ends
 
